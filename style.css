@@ -491,6 +491,49 @@ p.lead {
     flex-direction: row;
   }
 }
+
+
+/* === ✅ Correction affichage mobile === */
+@media (max-width: 600px) {
+  .description-service {
+    position: relative; /* n’est plus absolue sur mobile */
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .description-service p {
+    font-size: 1em;
+    text-align: center;
+  }
+
+  .prix-service .nouveau {
+    font-size: 1.2rem;
+  }
+
+  .buttons {
+    flex-direction: column; /* empile les boutons verticalement */
+    gap: 8px;
+    width: 100%;
+  }
+
+  .buttons button,
+  .buttons a {
+    flex: 1 1 auto;
+    width: 100%;
+    font-size: 0.9em;
+    padding: 8px;
+  }
+
+  .slide:hover img {
+    transform: none; /* désactive zoom/rotation sur mobile */
+  }
+}
+
+
+
+
 /* //////////////////////////////////////////////////// */
 .type-service {
   color: var(--muted);
@@ -667,3 +710,4 @@ footer {
 .fa-eye-slash {
   color: black;
 }
+
