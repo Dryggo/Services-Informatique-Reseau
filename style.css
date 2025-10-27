@@ -20,6 +20,7 @@
 }
 html,
 body {
+  overflow-x: hidden;
   height: 100%;
   margin: 0;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
@@ -192,6 +193,8 @@ p.lead {
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
   margin-top: 18px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .service {
   background: var(--card);
@@ -220,7 +223,13 @@ p.lead {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   margin-top: 12px;
 }
-
+.carousel,
+.slides,
+.slide {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box; /* inclut padding et border dans la largeur */
+}
 /* les images */
 .slides {
   display: flex;
@@ -474,27 +483,43 @@ p.lead {
 }
 
 .carousel .bouton-precedent {
-  left: 8px;
+  left: 5px;
 }
 .carousel .bouton-suivant {
-  right: 8px;
+  right: 5px;
 }
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .services {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* reste ok pour empiler les services */
+    padding-left: 0; /* ajoute pour éviter décalage */
+    padding-right: 0;
   }
 }
-
 @media (max-width: 480px) {
   .buttons {
-    flex-direction: row;
+    flex-direction: column; /* empile les boutons verticalement */
+    gap: 8px;
+    width: 100%;
+  }
+
+  .buttons button,
+  .buttons a {
+    flex: 1 1 auto;
+    width: 100%;
   }
 }
-
 
 /* === ✅ Correction affichage mobile === */
 @media (max-width: 600px) {
+  .service {
+    flex-direction: column; /* empile contenu verticalement */
+    gap: 10px;
+  }
+
+  .slides {
+    flex-wrap: nowrap;
+  }
   .description-service {
     position: relative; /* n’est plus absolue sur mobile */
     background: rgba(0, 0, 0, 0.7);
@@ -525,14 +550,13 @@ p.lead {
     font-size: 0.9em;
     padding: 8px;
   }
-
+  .whatsapp-btn {
+    margin-left: 0;
+  }
   .slide:hover img {
     transform: none; /* désactive zoom/rotation sur mobile */
   }
 }
-
-
-
 
 /* //////////////////////////////////////////////////// */
 .type-service {
@@ -710,4 +734,3 @@ footer {
 .fa-eye-slash {
   color: black;
 }
-
